@@ -1,0 +1,47 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "actions-on-google": "^2.6.0",
+    "dialogflow": "^0.8.0",
+    "dialogflow-fulfillment": "^0.6.1",
+    "fs": "0.0.1-security",
+    "google-oauth-jwt": "^0.2.0",
+    "universal-cookie": "^4.0.0",
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
+    "dotenv-cli": "^2.0.0",
+    "material-ui-flat-pagination": "^3.2.0",
+    "materialize-css": "^1.0.0",
+    "path": "^0.12.7",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-materialize": "^3.3.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.0",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start": "dotenv -e .env.dev react-scripts start",
+    "build-dev": "dotenv -e .env.dev react-scripts build",
+    "build-prod": "dotenv -e .env.prod react-scripts build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
