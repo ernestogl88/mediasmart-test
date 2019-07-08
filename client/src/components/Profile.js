@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import AuthService from "../services/AuthService";
 import { Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-
-import Image from "../img/icon-user-default.png";
 
 const styles = theme => ({
   textField: {
@@ -54,8 +51,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.main
   },
   form: {
-    display:'flex',
-    justifyContent:'space-around',
+    display: "flex",
+    justifyContent: "space-around",
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing.unit
   },
@@ -75,7 +72,7 @@ const styles = theme => ({
   },
   race: {
     textTransform: "uppercase",
-    padding: '20px 0'
+    padding: "20px 0"
   },
   propertiesContainer: {
     width: "50vw",
@@ -94,39 +91,13 @@ const styles = theme => ({
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.service = new AuthService();
     this.state = {
       username: "",
       image_url: ""
     };
   }
 
-  handleImageSubmit = event => {
-    event.preventDefault();
-
-    this.service
-      .uploadPicture(this.state)
-      .then(response => {
-        this.props.getUser(response.userUpdated)
-      })
-      .catch(() => {
-        return <Redirect to="/" />;
-      });
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
-  handleChangeFile = event => {
-    const { name, files } = event.target;
-    this.setState({ [name]: files });
-  };
-
   render() {
-    if (!this.props.user) return <Redirect to='/'/>
-
     return (
       <main className={this.props.classes.main}>
         <CssBaseline />
@@ -137,42 +108,13 @@ class Profile extends Component {
                 <img
                   className={this.props.classes.media}
                   src={
-                    this.props.user.image_url === ''
+                    this.props.user.image_url === ""
                       ? Image
                       : this.props.user.image_url
                   }
                   title={this.props.user.username}
                   alt="#"
                 />
-                <form
-                  onSubmit={e => this.handleImageSubmit(e)}
-                  className={this.props.classes.form}
-                >
-                  <input
-                    accept="image/*"
-                    className={this.props.classes.input}
-                    id="contained-button-file"
-                    type="file"
-                    name="image"
-                    onChange={e => this.handleChangeFile(e)}
-                  />
-                  <label htmlFor="contained-button-file">
-                    <Button
-                      variant="contained"
-                      component="span"
-                      className={this.props.classes.button}
-                    >
-                      Select Picture
-                    </Button>
-                  </label>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    className={this.props.classes.button}
-                  >
-                    Upload
-                  </Button>
-                </form>
               </div>
               <div className={this.props.classes.textInfo}>
                 <div>
@@ -187,7 +129,7 @@ class Profile extends Component {
                   >
                     {this.props.user.name}
                   </Typography>
-                  <Typography component="h4" variant='inherit'>
+                  <Typography component="h4" variant="inherit">
                     {this.props.user.email}
                   </Typography>
                 </div>
