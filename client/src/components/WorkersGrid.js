@@ -43,7 +43,7 @@ class WorkersGrid extends Component {
       allWorkers: this.props.workers,
       workers: this.props.workers.slice(
         this.state.offset,
-        this.state.offset + 10
+        this.state.offset + 8
       )
     });
   }
@@ -55,7 +55,7 @@ class WorkersGrid extends Component {
         allWorkers: nextProps.workers,
         workers: nextProps.workers.slice(
           this.state.offset,
-          this.state.offset + 10
+          this.state.offset + 8
         )
       });
     }
@@ -63,15 +63,12 @@ class WorkersGrid extends Component {
   handleClick(offset) {
     this.setState({
       ...this.state,
-      workers: this.state.allWorkers.slice(offset, offset + 10),
+      workers: this.state.allWorkers.slice(offset, offset + 8),
       offset
     });
   }
 
   render() {
-    console.log(this.state.allWorkers)
-    console.log(this.state.workers)
-    console.log(this.state.offset)
     return (
       <div className={this.props.classes.main}>
         <MuiThemeProvider theme={theme}>
@@ -79,7 +76,7 @@ class WorkersGrid extends Component {
           <Pagination
             size="large"
             className={this.props.classes.paginator}
-            limit={10}
+            limit={8}
             offset={this.state.offset}
             total={this.state.allWorkers.length}
             onClick={(e, offset) => this.handleClick(offset)}

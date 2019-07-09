@@ -23,7 +23,7 @@ var cache = duration => {
 
 router.get("/workers", cache(300), (req, res, next) => {
   var options = {
-    uri: "http://work.mediasmart.io/?page=0&page_size=40",
+    uri: "http://work.mediasmart.io/?page=0&page_size=100",
     headers: {
       Authorization: "mediasmart2019"
     }

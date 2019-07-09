@@ -48,9 +48,6 @@ class WorkerLittle extends React.Component {
               {this.state.name}
             </Typography>
             <Typography component='h3' variant="h3">{this.state.age}</Typography>
-            {/* <Typography component="p" noWrap={true}>
-              {this.state.bio}
-            </Typography> */}
           </CardContent>
         </CardActionArea>
       </Card>
