@@ -7,8 +7,6 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   main: {
     width: "70vw",
-    //display: "block",
-    // marginTop: 60,
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -18,7 +16,6 @@ const styles = theme => ({
     }
   },
   paper: {
-    // marginTop: theme.spacing.unit * 8,
     display: "flex",
     flexWrap: "wrap",
     flexDirection: "column",
@@ -29,27 +26,35 @@ const styles = theme => ({
       .spacing.unit * 3}px`
   },
   media: {
-    //flexGrow: .3,
-    height: "60vh",
-    // maxWidth: "50vw",
+    height: "40vh",
+    [theme.breakpoints.up("sm")]: {
+      height: "60vh"
+    },
     padding: "1vh"
   },
   textInfo: {
-    width: "90vw",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center"
+    padding: "20px 0",
+    width: "85vw"
   },
   age: {
     textTransform: "uppercase",
     padding: "20px 0"
   },
   bio: {
-    textAlign: "justify"
+    textAlign: "justify",
+    lineHeight: "30px"
   },
-  upperDiv:{
+  upperDiv: {
+    width: "85vw",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center"
+  },
+  upperText:{
     display: 'flex',
-
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
@@ -66,17 +71,23 @@ class Profile extends Component {
               title={this.props.location.state.name}
               alt="#"
             />
-            <Typography component="header" variant="headline">
-              {this.props.location.state.name}
-            </Typography>
-            <Typography
-              className={this.props.classes.age}
-              component="h3"
-              variant="title"
-              color="textSecondary"
-            >
-              {this.props.location.state.age} years old
-            </Typography>
+            <div className={this.props.classes.upperText}>
+              <Typography
+                component="header"
+                variant="headline"
+                className={this.props.classes.age}
+              >
+                {this.props.location.state.name}
+              </Typography>
+              <Typography
+                className={this.props.classes.age}
+                component="h3"
+                variant="title"
+                color="textSecondary"
+              >
+                {this.props.location.state.age} years old
+              </Typography>
+            </div>
           </div>
 
           <div className={this.props.classes.textInfo}>
