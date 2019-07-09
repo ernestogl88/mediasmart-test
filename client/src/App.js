@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import Service from "./services/Service";
 import Navbar from "./components/Navbar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-
-import { Switch, Route, BrowserRouter } from "react-router-dom";
 import WorkersGrid from "./components/WorkersGrid";
+import Profile from "./components/Profile";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,8 +14,8 @@ class App extends React.Component {
     this.service = new Service();
   }
 
-  componentWillMount(){
-    this.getWorkers()
+  componentWillMount() {
+    this.getWorkers();
   }
 
   getWorkers() {
@@ -33,7 +33,25 @@ class App extends React.Component {
         <CssBaseline>
           <div className="App">
             <Navbar />
-            <WorkersGrid workers={this.state.workers} />
+            <Switch>
+              <Route
+                exact
+                path="/profile"
+                render={props => (
+                  <Profile
+                    {...props}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <WorkersGrid workers={this.state.workers} />
+                )}
+              />
+            </Switch>
+            
           </div>
         </CssBaseline>
       </BrowserRouter>

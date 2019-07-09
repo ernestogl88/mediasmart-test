@@ -1,31 +1,13 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
-  },
-  dense: {
-    marginTop: 16
-  },
-  menu: {
-    width: 200
-  },
-  button: {
-    margin: theme.spacing.unit
-  },
-  input: {
-    display: "none"
-  },
   main: {
     width: "70vw",
-    display: "block",
+    //display: "block",
     // marginTop: 60,
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
@@ -39,103 +21,73 @@ const styles = theme => ({
     // marginTop: theme.spacing.unit * 8,
     display: "flex",
     flexWrap: "wrap",
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
     background: "rgba(100, 100, 100, 0.15)",
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
       .spacing.unit * 3}px`
   },
-  avatar: {
-    margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main
-  },
-  form: {
-    display: "flex",
-    justifyContent: "space-around",
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing.unit
-  },
-  submit: {
-    marginTop: theme.spacing.unit * 3
-  },
   media: {
+    //flexGrow: .3,
     height: "60vh",
-    maxWidth: "50vw",
-    padding: "3vh"
+    // maxWidth: "50vw",
+    padding: "1vh"
   },
   textInfo: {
-    width: "50vw",
+    width: "90vw",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center"
   },
-  race: {
+  age: {
     textTransform: "uppercase",
     padding: "20px 0"
   },
-  propertiesContainer: {
-    width: "50vw",
-    display: "flex",
-    flexWrap: "wrap"
+  bio: {
+    textAlign: "justify"
   },
-  properties: {
-    width: "25%"
-  },
-  icon: {
-    display: "flex",
-    justifyContent: "center"
+  upperDiv:{
+    display: 'flex',
+
   }
 });
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      image_url: ""
-    };
-  }
-
   render() {
     return (
       <main className={this.props.classes.main}>
         <CssBaseline />
         <Paper className={this.props.classes.paper}>
-          {this.props.user !== null && (
-            <React.Fragment>
-              <div>
-                <img
-                  className={this.props.classes.media}
-                  src={
-                    this.props.user.image_url === ""
-                      ? Image
-                      : this.props.user.image_url
-                  }
-                  title={this.props.user.username}
-                  alt="#"
-                />
-              </div>
-              <div className={this.props.classes.textInfo}>
-                <div>
-                  <Typography component="h1" variant="h1">
-                    {this.props.user.username}
-                  </Typography>
-                  <Typography
-                    className={this.props.classes.race}
-                    component="h3"
-                    variant="h3"
-                    color="textSecondary"
-                  >
-                    {this.props.user.name}
-                  </Typography>
-                  <Typography component="h4" variant="inherit">
-                    {this.props.user.email}
-                  </Typography>
-                </div>
-              </div>
-            </React.Fragment>
-          )}
+          <div className={this.props.classes.upperDiv}>
+            <img
+              className={this.props.classes.media}
+              src={this.props.location.state.image}
+              title={this.props.location.state.name}
+              alt="#"
+            />
+            <Typography component="header" variant="headline">
+              {this.props.location.state.name}
+            </Typography>
+            <Typography
+              className={this.props.classes.age}
+              component="h3"
+              variant="title"
+              color="textSecondary"
+            >
+              {this.props.location.state.age} years old
+            </Typography>
+          </div>
+
+          <div className={this.props.classes.textInfo}>
+            <Typography
+              component="p"
+              variant="subheading"
+              className={this.props.classes.bio}
+            >
+              {this.props.location.state.bio}
+            </Typography>
+          </div>
         </Paper>
       </main>
     );

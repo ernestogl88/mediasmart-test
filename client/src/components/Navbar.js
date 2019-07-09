@@ -18,7 +18,8 @@ const styles = {
   },
   noDecoration: {
     textDecoration: "none",
-    color: "inherit"
+    color: "inherit",
+    fontSize: '40px'
   },
   navBg: {
     background: "rgba(255, 255, 255, 0.7)"

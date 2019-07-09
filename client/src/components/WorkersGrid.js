@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import WorkerLittle from "./WorkerLittle";
 import { withStyles } from "@material-ui/core/styles";
-import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import Pagination from "material-ui-flat-pagination";
 import CssBaseline from "@material-ui/core/CssBaseline";

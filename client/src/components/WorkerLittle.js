@@ -18,6 +18,10 @@ const styles = {
   },
   cardContentHeigth: {
     height: 120
+  },
+  noDecoration: {
+    textDecoration: "none",
+    color: "inherit"
   }
 };
 
@@ -30,27 +34,43 @@ class WorkerLittle extends React.Component {
       bio: props.bio,
       name: props.name,
       age: props.age,
-      image_url: props.image
+      image: props.image
     };
   }
 
   render() {
     return (
-      <Card className={this.props.classes.card}>
-        <CardActionArea>
-          <CardMedia
-            className={this.props.classes.media}
-            image={this.state.image_url}
-            title={this.state.name}
-          />
-          <CardContent className={this.props.classes.cardContentHeigth}>
-            <Typography gutterBottom variant="headline" noWrap={true}>
-              {this.state.name}
-            </Typography>
-            <Typography component='h3' variant="h3">{this.state.age}</Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <Link
+        className={this.props.classes.noDecoration}
+        to={{
+          pathname: `/profile/`,
+          state: {
+            id: this.state.id,
+            bio: this.state.bio,
+            name: this.state.name,
+            age: this.state.age,
+            image: this.state.image
+          }
+        }}
+      >
+        <Card className={this.props.classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={this.props.classes.media}
+              image={this.state.image}
+              title={this.state.name}
+            />
+            <CardContent className={this.props.classes.cardContentHeigth}>
+              <Typography variant="headline" noWrap={true}>
+                {this.state.name}
+              </Typography>
+              <Typography component="h3" variant="h3">
+                {this.state.age}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Link>
     );
   }
 }
