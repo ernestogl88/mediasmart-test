@@ -7,6 +7,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 
 const theme = createMuiTheme();
 
+const paginatorSize = window.screen.availWidth < 405 ? "medium" : "large";
+
 const styles = {
   main: {
     display: "flex",
@@ -32,7 +34,7 @@ class WorkersGrid extends Component {
     this.state = {
       allWorkers: [],
       workers: [],
-      offset: 0,
+      offset: 0
     };
   }
 
@@ -42,7 +44,7 @@ class WorkersGrid extends Component {
       allWorkers: this.props.workers,
       workers: this.props.workers.slice(
         this.state.offset,
-        this.state.offset + 8
+        this.state.offset + 9
       )
     });
   }
@@ -54,7 +56,7 @@ class WorkersGrid extends Component {
         allWorkers: nextProps.workers,
         workers: nextProps.workers.slice(
           this.state.offset,
-          this.state.offset + 8
+          this.state.offset + 9
         )
       });
     }
@@ -62,7 +64,7 @@ class WorkersGrid extends Component {
   handleClick(offset) {
     this.setState({
       ...this.state,
-      workers: this.state.allWorkers.slice(offset, offset + 8),
+      workers: this.state.allWorkers.slice(offset, offset + 9),
       offset
     });
   }
@@ -73,9 +75,9 @@ class WorkersGrid extends Component {
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <Pagination
-            size="large"
+            size={paginatorSize}
             className={this.props.classes.paginator}
-            limit={8}
+            limit={9}
             offset={this.state.offset}
             total={this.state.allWorkers.length}
             onClick={(e, offset) => this.handleClick(offset)}
