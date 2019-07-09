@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import StrainLittle from "./StrainLittle";
+import WorkerLittle from "./WorkerLittle";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import { Switch, Route, Redirect, BrowserRouter } from "react-router-dom";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import Pagination from "material-ui-flat-pagination";
@@ -28,71 +27,70 @@ const styles = {
   }
 };
 
-class WeedsGrid extends Component {
+class WorkersGrid extends Component {
   constructor(props) {
     super(props);
     this.state = {
       allWorkers: [],
       workers: [],
       offset: 0,
-      allWorkersNumber: 0
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     ...this.state,
-  //     allWorkers: this.props.workers,
-  //     workers: this.props.workers.slice(
-  //       this.state.offset,
-  //       this.state.offset + 10
-  //     ),
-  //     allWorkersNumber: this.props.workers.length
-  //   });
-  // }
+  componentDidMount() {
+    this.setState({
+      ...this.state,
+      allWorkers: this.props.workers,
+      workers: this.props.workers.slice(
+        this.state.offset,
+        this.state.offset + 10
+      )
+    });
+  }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.workers !== nextProps.workers) {
-  //     this.setState({
-  //       ...this.state,
-  //       allWorkers: nextProps.workers,
-  //       workers: nextProps.workers.slice(
-  //         this.state.offset,
-  //         this.state.offset + 10
-  //       ),
-  //       allWorkersNumber: nextProps.workers.length
-  //     });
-  //   }
-  // }
-  // handleClick(offset) {
-  //   this.setState({
-  //     ...this.state,
-  //     workers: this.state.allWorkers.slice(offset, offset + 10),
-  //     offset
-  //   });
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.workers !== nextProps.workers) {
+      this.setState({
+        ...this.state,
+        allWorkers: nextProps.workers,
+        workers: nextProps.workers.slice(
+          this.state.offset,
+          this.state.offset + 10
+        )
+      });
+    }
+  }
+  handleClick(offset) {
+    this.setState({
+      ...this.state,
+      workers: this.state.allWorkers.slice(offset, offset + 10),
+      offset
+    });
+  }
 
   render() {
     console.log(this.state.allWorkers)
+    console.log(this.state.workers)
+    console.log(this.state.offset)
     return (
       <div className={this.props.classes.main}>
-        {/* <MuiThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>
           <CssBaseline />
           <Pagination
             size="large"
             className={this.props.classes.paginator}
             limit={10}
             offset={this.state.offset}
-            total={this.state.allWorkersNumber}
+            total={this.state.allWorkers.length}
             onClick={(e, offset) => this.handleClick(offset)}
           />
-        </MuiThemeProvider> */}
+        </MuiThemeProvider>
 
         <div className={this.props.classes.container}>
           {this.state.workers.map(worker => {
             return (
-              <div key={worker._id}>
-                <StrainLittle {...worker} />
+              <div key={worker.id}>
+                <WorkerLittle {...worker} />
               </div>
             );
           })}
@@ -101,4 +99,4 @@ class WeedsGrid extends Component {
     );
   }
 }
-export default withStyles(styles)(WeedsGrid);
+export default withStyles(styles)(WorkersGrid);

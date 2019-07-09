@@ -5,11 +5,13 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
+import Logo from "../img/favicon.ico";
+
 const styles = {
   root: {
     flexGrow: 1,
     height: "10vh",
-    justifyContent: 'center'
+    justifyContent: "space-between"
   },
   grow: {
     flexGrow: 1
@@ -20,19 +22,22 @@ const styles = {
   },
   navBg: {
     background: "rgba(255, 255, 255, 0.7)"
-  },
+  }
 };
 
 class Navbar extends React.Component {
-
   render() {
     return (
       <div className={this.props.classes.root}>
-        <AppBar positionSticky className={this.props.classes.navBg}>
+        <AppBar className={this.props.classes.navBg}>
           <Toolbar className={this.props.classes.root}>
-            <Typography variant="h6">
+            <NavLink className={this.props.classes.grow} to="/">
+              <img alt="Logo" src={Logo} />
+            </NavLink>
+
+            <Typography variant="h6" className={this.props.classes.grow}>
               <NavLink className={this.props.classes.noDecoration} to="/">
-                Home
+                Members
               </NavLink>
             </Typography>
           </Toolbar>

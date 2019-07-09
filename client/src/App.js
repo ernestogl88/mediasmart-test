@@ -2,11 +2,10 @@ import React from "react";
 import "./App.css";
 import Service from "./services/Service";
 import Navbar from "./components/Navbar";
-import Homepage from "./components/Homepage";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { Switch, Route, BrowserRouter } from "react-router-dom";
-import WeedsGrid from "./components/WeedsGrid";
+import WorkersGrid from "./components/WorkersGrid";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,13 +28,12 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.workers)
     return (
       <BrowserRouter>
         <CssBaseline>
           <div className="App">
             <Navbar />
-            <WeedsGrid workers={this.state.workers} />
+            <WorkersGrid workers={this.state.workers} />
           </div>
         </CssBaseline>
       </BrowserRouter>
